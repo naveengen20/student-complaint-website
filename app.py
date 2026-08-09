@@ -1,12 +1,19 @@
 from flask import Flask, render_template, request
+import os
 import sqlite3
 import random
 
 app = Flask(__name__)
-DB = "complaints.db"
+
+DB = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "complaints.db"
+)
+
 
 def init_db():
     conn = sqlite3.connect(DB)
+
     conn.execute("""
         CREATE TABLE IF NOT EXISTS complaints (
             complaint_id INTEGER PRIMARY KEY,
@@ -17,24 +24,34 @@ def init_db():
             details TEXT NOT NULL
         )
     """)
+
     conn.commit()
     conn.close()
 
+
 def generate_id():
+    init_db()
+
     conn = sqlite3.connect(DB)
+
     while True:
         complaint_id = random.randint(10000, 99999)
+
         exists = conn.execute(
             "SELECT complaint_id FROM complaints WHERE complaint_id = ?",
             (complaint_id,)
         ).fetchone()
+
         if not exists:
             conn.close()
             return complaint_id
 
+
 @app.route("/", methods=["GET", "POST"])
 def home():
+
     if request.method == "POST":
+
         student_name = request.form["student_name"]
         year = request.form["year"]
         department = request.form["department"]
@@ -44,19 +61,33 @@ def home():
         complaint_id = generate_id()
 
         conn = sqlite3.connect(DB)
+
         conn.execute("""
             INSERT INTO complaints
             (complaint_id, student_name, year, department, complaint_about, details)
             VALUES (?, ?, ?, ?, ?, ?)
-        """, (complaint_id, student_name, year, department, complaint_about, details))
+        """, (
+            complaint_id,
+            student_name,
+            year,
+            department,
+            complaint_about,
+            details
+        ))
+
         conn.commit()
         conn.close()
 
-        return render_template("success.html", complaint_id=complaint_id)
+        return render_template(
+            "success.html",
+            complaint_id=complaint_id
+        )
 
     return render_template("index.html")
 
+
 init_db()
+
 
 if __name__ == "__main__":
     app.run(debug=True)
