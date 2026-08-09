@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Complaint Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef4ff, #f8fbff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            text-align: center;
+            color: #173b8f;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 16px 0 7px;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd3df;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #1d55c7;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1545a8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Student Complaint Portal</h1>
+    <p class="subtitle">Submit your complaint safely and easily</p>
+
+    <form method="POST">
+
+        <label>Student Name</label>
+        <input type="text" name="student_name"
+               placeholder="Enter your name" required>
+
+        <label>Year</label>
+        <select name="year" required>
+            <option value="">Select Year</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+        </select>
+
+        <label>Department</label>
+        <input type="text" name="department"
+               placeholder="Enter your department" required>
+
+        <label>Complaint About</label>
+        <select name="complaint_about" required>
+            <option value="">Select complaint category</option>
+            <option>Staff</option>
+            <option>Head of Department</option>
+            <option>Classroom</option>
+            <option>Canteen</option>
+            <option>Rest Room</option>
+            <option>Others</option>
+        </select>
+
+        <label>Complaint Details</label>
+        <textarea name="details"
+                  placeholder="Enter your complaint details..."
+                  required></textarea>
+
+        <button type="submit">Submit Complaint</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
