@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Submitted</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef7f0;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .box {
+            background: white;
+            width: 450px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: green;
+        }
+
+        .id {
+            font-size: 28px;
+            font-weight: bold;
+            color: blue;
+            margin: 20px;
+        }
+
+        a {
+            display: inline-block;
+            background: #1d55c7;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>✓ Complaint Submitted Successfully!</h1>
+
+    <p>Your complaint has been recorded.</p>
+
+    <p>Your Complaint ID is:</p>
+
+    <div class="id">{{ complaint_id }}</div>
+
+    <p>Please save this ID for future reference.</p>
+
+    <a href="/">Submit Another Complaint</a>
+
+</div>
+
+</body>
+</html>
